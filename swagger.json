@@ -1,0 +1,130 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Nursery API",
+      "description": "API for managing nursery administrators, teachers, and children"
+    },
+    "paths": {
+      "/register/teacher": {
+        "post": {
+          "summary": "Register a new teacher",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeacherRegistration"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Teacher registered successfully"
+            },
+            "400": {
+              "description": "Bad request"
+            }
+          }
+        }
+      },
+      "/add/child": {
+        "post": {
+          "summary": "Add a new child",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChildInfo"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Child added successfully"
+            },
+            "400": {
+              "description": "Bad request"
+            }
+          }
+        }
+      },
+      "/change/password": {
+        "post": {
+          "summary": "Change password",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PasswordChange"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Password changed successfully"
+            },
+            "400": {
+              "description": "Bad request"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "TeacherRegistration": {
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "profile_picture": {
+              "type": "string",
+              "format": "binary"
+            }
+          },
+          "required": ["username", "password"]
+        },
+        "ChildInfo": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "age": {
+              "type": "integer"
+            },
+            "guardian": {
+              "type": "string"
+            }
+          },
+          "required": ["name", "age", "guardian"]
+        },
+        "PasswordChange": {
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "old_password": {
+              "type": "string"
+            },
+            "new_password": {
+              "type": "string"
+            }
+          },
+          "required": ["username", "old_password", "new_password"]
+        }
+      }
+    }
+  }
+  
